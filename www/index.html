@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <h1>要死了</h1>
+    <div id="introduct"></div>
+    <script src="/xuni/bundle.js"></script>
+    <script>
+        // var templateStr = "我买了一个{{thing}}，好{{mood}}！";
+        var templateStr = `
+            <h1>
+                {{#arr}}
+                    {{name}}的爱好是：
+                    <ol>
+                        {{#hobbies}}
+                            <li>{{.}}</li>
+                        {{/hobbies}}
+                    </ol>
+                {{/arr}}
+            </h1>
+        `;
+        var templateStr1 = `我爱{{somebody}},我好{{mood}}啊，我考了{{a.b.c}}分 `;
+        var data = {
+            arr: [
+                { "name": "小明", "age": 12, "sex": "男", hobbies: ['王者荣耀', '羽毛球', '跑步'] },
+                { "name": "小绿", "age": 15, "sex": "男", hobbies: ['吃鸡', '羽毛球', '跑步'] },
+                { "name": "小红", "age": 13, "sex": "女", hobbies: ['消消乐', '羽毛球', '跑步'] }
+            ]
+        };
+        var data1 = {
+            'somebody': '赞多',
+            'mood': 'happy',
+            a:{
+                b:{
+                    c:100
+                }
+            }
+        };
+        let result = YDF_TemplateEngine.render(templateStr,data);
+        console.log(result);
+        let DIV = document.getElementById('introduct');
+        DIV.innerHTML = result;
+    </script>
+</body>
+
+</html>
